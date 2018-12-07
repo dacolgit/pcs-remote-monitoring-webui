@@ -12,7 +12,7 @@ import './refreshBar.scss';
 export class RefreshBar extends Component {
 
   refresh = () => {
-    this.props.logEvent(toDiagnosticsModel('Refresh_Clicked', {}));
+    this.props.logEvent(toDiagnosticsModel('Refresh_Click', {}));
     return !this.props.isPending && this.props.refresh();
   }
 

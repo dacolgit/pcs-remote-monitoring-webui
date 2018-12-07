@@ -43,7 +43,6 @@ export class Rules extends Component {
     }
 
     this.props.updateCurrentWindow('Rules');
-    this.props.logEvent(toDiagnosticsModel('RulesPage_Click', {}));
 
     if (this.props.applicationPermissionsAssigned !== undefined) {
       this.logApplicationPermissions(this.props.applicationPermissionsAssigned);

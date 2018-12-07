@@ -6,7 +6,7 @@ import moment from 'moment';
 
 import Config from 'app.config';
 import { TelemetryService } from 'services';
-import { permissions, toDiagnosticsModel } from 'services/models';
+import { permissions } from 'services/models';
 import { compareByProperty, getIntervalParams, retryHandler } from 'utilities';
 import { Grid, Cell } from './grid';
 import { PanelErrorBoundary } from './panel';
@@ -15,10 +15,10 @@ import { ManageDeviceGroupsBtnContainer as ManageDeviceGroupsBtn } from 'compone
 import { TimeIntervalDropdownContainer as TimeIntervalDropdown } from 'components/shell/timeIntervalDropdown';
 import {
   OverviewPanel,
-  AlertsPanel,
+  AlertsPanelContainer as AlertsPanel,
   TelemetryPanel,
   AnalyticsPanel,
-  MapPanel,
+  MapPanelContainer as MapPanel,
   ExamplePanel,
   transformTelemetryResponse,
   chartColorObjects
@@ -76,7 +76,6 @@ export class Dashboard extends Component {
     this.panelsRefresh$ = new Subject();
 
     this.props.updateCurrentWindow('Dashboard');
-    this.props.logEvent(toDiagnosticsModel('DashboardPage_Click', {}));
   }
 
   componentDidMount() {
@@ -294,8 +293,7 @@ export class Dashboard extends Component {
       rules,
       rulesError,
       rulesIsPending,
-      t,
-      logEvent
+      t
     } = this.props;
     const {
       telemetry,
@@ -402,8 +400,7 @@ export class Dashboard extends Component {
                   mapKeyIsPending={azureMapsKeyIsPending}
                   isPending={devicesIsPending || analyticsIsPending}
                   error={azureMapsKeyError || devicesError || analyticsError}
-                  t={t}
-                  logEvent={logEvent} />
+                  t={t} />
               </PanelErrorBoundary>
             </Cell>
             <Cell className="col-3">
@@ -412,8 +409,7 @@ export class Dashboard extends Component {
                 isPending={analyticsIsPending || rulesIsPending}
                 error={rulesError || analyticsError}
                 t={t}
-                deviceGroups={deviceGroups}
-                logEvent={logEvent} />
+                deviceGroups={deviceGroups} />
             </Cell>
             <Cell className="col-6">
               <TelemetryPanel
