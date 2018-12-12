@@ -9,6 +9,7 @@ import { epics as deploymentsEpics } from './reducers/deploymentsReducer';
 import { epics as rulesEpics } from './reducers/rulesReducer';
 import { epics as packagesEpics } from './reducers/packagesReducer';
 import { epics as simulationEpics } from './reducers/deviceSimulationReducer';
+import { epics as opctwinEpics } from './reducers/opctwinReducer';
 
 // Extract the epic function from each property object
 const epics = [
@@ -17,7 +18,8 @@ const epics = [
   ...devicesEpics.getEpics(),
   ...packagesEpics.getEpics(),
   ...rulesEpics.getEpics(),
-  ...simulationEpics.getEpics()
+  ...simulationEpics.getEpics(),
+  ...opctwinEpics.getEpics()
 ];
 
 const rootEpic = combineEpics(...epics);

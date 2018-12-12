@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft. All rights reserved.
-const baseUrl = process.env.REACT_APP_BASE_SERVICE_URL || '';
+const baseUrl = process.env.REACT_APP_BASE_SERVICE_URL || 'https://dacol-remotemonitoring.azurewebsites.net';
 const validExtensions = ['.png', '.jpeg', '.jpg', '.svg'];
 
 const Config = {
@@ -12,7 +12,10 @@ const Config = {
     diagnostics: `${baseUrl}/diagnostics/v1/`,
     privacy: 'https://privacy.microsoft.com/privacystatement',
     //TODO: Determine if should query java or dotnet
-    gitHubReleases: 'https://api.github.com/repos/Azure/azure-iot-pcs-remote-monitoring-dotnet/releases'
+    gitHubReleases: 'https://api.github.com/repos/Azure/azure-iot-pcs-remote-monitoring-dotnet/releases',
+
+    registry: process.env.REACT_APP_PCS_TWIN_REGISTRY_URL || "http://localhost:9042",
+    twins: process.env.REACT_APP_PCS_TWIN_SERVICE_URL || "http://localhost:9041"
   },
   contextHelpUrls: {
     accessDenied: 'https://docs.microsoft.com/azure/iot-accelerators/iot-accelerators-remote-monitoring-rbac#add-or-remove-users',
@@ -69,7 +72,19 @@ const Config = {
   authenticationKey: {
     autoKey: 'Auto generate keys',
     manualKey: 'Enter keys manually'
-  }
+  },
+  nodeProperty: {
+    read: 'Read',
+    write: 'Write',
+    method: 'Method',
+    variable: 'Variable'
+  },
+
+  /* aadTenant: process.env.REACT_APP_PCS_WEBUI_AUTH_AAD_TENANT,
+  aadAppId: process.env.REACT_APP_PCS_WEBUI_AUTH_AAD_APPID,
+  aadAudience: process.env.REACT_APP_PCS_AUTH_AUDIENCE,
+  aadInstance: process.env.REACT_APP_PCS_WEBUI_AUTH_AAD_AUTHORITY,
+  authEnabled: process.env.REACT_APP_PCS_AUTH_REQUIRED */
 };
 
 export default Config;

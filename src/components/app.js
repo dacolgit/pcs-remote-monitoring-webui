@@ -13,6 +13,7 @@ import {
   RulesContainer,
   MaintenanceContainer,
   PackagesContainer,
+  BrowseContainer,
   DeploymentsRouter
 } from './pages';
 
@@ -64,6 +65,13 @@ class App extends Component {
         component: PackagesContainer
       },
       {
+        to: '/browse',
+        exact: true,
+        svg: svgs.tabs.packages,
+        labelId: 'tabs.browse',
+        component: BrowseContainer
+      },
+      {
         to: '/deployments',
         exact: false,
         svg: svgs.tabs.deployments,
@@ -98,6 +106,11 @@ class App extends Component {
       {
         path: '/packages', crumbs: [
           { to: '/packages', labelId: 'tabs.packages' }
+        ]
+      },
+      {
+        path: '/browse', crumbs: [
+          { to: '/browse', labelId: 'tabs.browse' }
         ]
       },
       {

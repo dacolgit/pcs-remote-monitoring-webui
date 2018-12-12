@@ -9,6 +9,7 @@ import { reducer as devicesReducer } from './reducers/devicesReducer';
 import { reducer as packagesReducer } from './reducers/packagesReducer';
 import { reducer as rulesReducer } from './reducers/rulesReducer';
 import { reducer as simulationReducer } from './reducers/deviceSimulationReducer';
+import { reducer as opctwinReducer } from './reducers/opctwinReducer';
 
 const rootReducer = combineReducers({
   ...appReducer,
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
   ...devicesReducer,
   ...packagesReducer,
   ...rulesReducer,
-  ...simulationReducer
+  ...simulationReducer,
+  ...opctwinReducer
 });
 
 export default rootReducer;

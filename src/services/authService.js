@@ -33,6 +33,7 @@ export class AuthService {
     AuthService.tenantId = global.DeploymentConfig.aad.tenant;
     AuthService.clientId = global.DeploymentConfig.aad.appId;
     AuthService.appId = global.DeploymentConfig.aad.appId;
+    //AuthService.appId = global.DeploymentConfig.aad.audience;
     AuthService.aadInstance = global.DeploymentConfig.aad.instance;
 
     if (AuthService.aadInstance && AuthService.aadInstance.endsWith('{0}')) {

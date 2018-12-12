@@ -21,7 +21,8 @@
     "rules": "Rules",
     "maintenance": "Maintenance",
     "packages": "Packages",
-    "deployments": "Deployments"
+    "deployments": "Deployments",
+    "browse": "Browse"
   },
   "errorFormat": "Error: {{message}}",
   "edgeAgentStatus": {
@@ -798,5 +799,50 @@
       "header": "Example Panel",
       "panelBody": "This is a new panel."
     }
+  },
+  "pageHeader": "Start Page",
+  "delete": "Delete",
+  "scan": "Scan",
+  "securityMode": "Security Mode: ",
+  "securityPolicy": "Security policy: ",
+  "activateEndpoint": "Browse enabled",
+  "browseFlyout":{
+    "title": "Manage Opc UA Nodes",
+    "selectAction": "Select Action",
+    "close": "Close",
+    "apply": "Apply",
+    "nodeName": "Node  display name",
+    "value": "Value:",
+    "writeMessage": "Enter value to write",
+    "errorMessage": "Operation failed: ",
+    "writeSuccesfully": "Variable written succesfully",
+    "callSuccesfully": "Method executed succesfully",
+    "noAccess": "this variable cannot be accessed",
+    "options": {
+      "read": "Read",
+      "write": "Write",
+      "call": "Call"
+    },
+    "validation": {
+      "required": "Parameter is required",
+      "NaN": "Input must be a number"
+    }
+  },
+  "endpointFilter": {
+    "all": "All Endpoints",
+    "secure": "Most Secure Endpoint"
+  },
+  "scanButton": {
+    "label": "Scan ",
+    "on": "On",
+    "off": "Off"
+  },
+  "explorerLabel": {
+    "supervisor": "Supervisor:",
+    "server": "Server:",
+    "endpoint": "Endpoint:",
+    "node": "Node:",
+    "nodeType": "node type: ",
+    "value": " Value: "
   }
 }

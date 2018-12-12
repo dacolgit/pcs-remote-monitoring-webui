@@ -9,3 +9,5 @@ export * from './telemetryService';
 export * from './configService';
 export * from './gitHubService';
 export * from './diagnosticsService';
+export * from './twinService';
+export * from './registryService';

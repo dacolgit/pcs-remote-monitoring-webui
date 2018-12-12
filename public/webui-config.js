@@ -10,6 +10,9 @@ var DeploymentConfig = {
   aad : {
     tenant: '00000000-0000-0000-0000-000000000000',
     appId: '00000000-0000-0000-0000-000000000000',
+    /* tenant: '72f988bf-86f1-41af-91ab-2d7cd011db47',
+    appId: '7b543064-cbde-4b43-a451-b2b050166006',
+    audience: '', */
     instance: ''
   }
 }
