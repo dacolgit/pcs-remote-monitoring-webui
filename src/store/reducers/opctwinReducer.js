@@ -158,7 +158,7 @@ const registerErrorReducer = (state, { payload, error, fromAction }) => update(s
 });
 
 const updateApplicationsReducer = (state, action) => {
-  const payload = action.fromAction.payload !== undefined 
+  const payload = action.fromAction.payload !== undefined
     ? action.payload.filter(x => x.supervisorId === action.fromAction.payload)
     : action.payload
   const { entities: { applications = {} } } = normalize(payload, applicationListSchema);
@@ -218,9 +218,9 @@ const updateRootNodeReducer = (state, action) => {
   });
 }
 
-const updateTwinsReducer = (state, action) => { 
+const updateTwinsReducer = (state, action) => {
   const flatTwin = action.payload.items.map((item) => {return {id: item.applicationId, endpointId: item.registration.id, activated: item.activated}});
- 
+
   return update(state, {
     entities: {
       twins: { $set: flatTwin },
@@ -229,7 +229,7 @@ const updateTwinsReducer = (state, action) => {
   });
 }
 
-const updateSupervisorsReducer = (state, action) => { 
+const updateSupervisorsReducer = (state, action) => {
   const { entities: { supervisors = {} } } = normalize(action.payload, supervisorListSchema);
 
   return update(state, {
@@ -240,13 +240,13 @@ const updateSupervisorsReducer = (state, action) => {
   });
 }
 
-const updatePathReducer = (state, action) => { 
-  
+const updatePathReducer = (state, action) => {
+
    return update(state, {
     entities: {
       path: { $set: action.payload.payload }
     }
-  }); 
+  });
 }
 
 const updateEndpointFilter = (state, { payload }) => update(state,
@@ -270,11 +270,11 @@ export const redux = createReducerScenario({
   updateUser: { type: 'UPDATE_USER', reducer: updateUser }
 });
 
-export const reducer = { app: redux.getReducer(initialState) };
+export const reducer = { opcTwin: redux.getReducer(initialState) };
 // ========================= Reducers - END
 
 // ========================= Selectors - START
-export const getAppReducer = state => state.app;
+export const getAppReducer = state => state.opcTwin;
 export const getEntities = state => getAppReducer(state).entities;
 export const getApplications = state => Object.values(getEntities(state).applications);
 export const getEndpoints = state => getEntities(state).endpoints;
@@ -293,7 +293,7 @@ export const getFilteredEndpoints = createSelector(
     const endpointArray = Object.values(endpointList);
     if (filter === 'secure' && endpointArray.length > 0) {
       const index = endpointArray.findIndex(x => x.securityLevel === Math.max(...endpointArray.map(x => x.securityLevel)))
-      return endpointArray.slice(index, index + 1); 
+      return endpointArray.slice(index, index + 1);
     } else {
       return endpointArray;
     }

@@ -65,13 +65,6 @@ class App extends Component {
         component: PackagesContainer
       },
       {
-        to: '/browse',
-        exact: true,
-        svg: svgs.tabs.packages,
-        labelId: 'tabs.browse',
-        component: BrowseContainer
-      },
-      {
         to: '/deployments',
         exact: false,
         svg: svgs.tabs.deployments,
@@ -84,6 +77,13 @@ class App extends Component {
         svg: svgs.tabs.maintenance,
         labelId: 'tabs.maintenance',
         component: MaintenanceContainer
+      },
+      {
+        to: '/browse',
+        exact: true,
+        svg: svgs.tabs.fileTree,
+        labelId: 'tabs.browse',
+        component: BrowseContainer
       }
     ];
 
@@ -106,11 +106,6 @@ class App extends Component {
       {
         path: '/packages', crumbs: [
           { to: '/packages', labelId: 'tabs.packages' }
-        ]
-      },
-      {
-        path: '/browse', crumbs: [
-          { to: '/browse', labelId: 'tabs.browse' }
         ]
       },
       {
@@ -154,6 +149,11 @@ class App extends Component {
           { to: '/maintenance/jobs', labelId: 'maintenance.jobs' },
           { to: '/maintenance/rule/:id', matchParam: 'id' }
         ]
+      },
+      {
+        path: '/browse', crumbs: [
+          { to: '/browse', labelId: 'tabs.browse' }
+        ]
       }
     ];
 
@@ -164,12 +164,12 @@ class App extends Component {
       openUserProfile: this.openUserProfile,
       ...this.props
     };
-
     return (
+
       <Protected permission={permissions.readAll}>
         {
           (hasPermission) =>
-            <Shell denyAccess={!hasPermission} {...shellProps}>
+            <Shell denyAccess={ !hasPermission } {...shellProps}>
               {deviceGroupFlyoutIsOpen && <ManageDeviceGroupsContainer />}
               {openFlyout === 'settings' && <SettingsContainer onClose={this.closeFlyout} />}
               {openFlyout === 'profile' && <ProfileContainer onClose={this.closeFlyout} />}

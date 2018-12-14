@@ -56,6 +56,9 @@ import TrashIconPath from 'assets/icons/trash.svg';
 import UploadIconPath from 'assets/icons/upload.svg';
 import WarningIconPath from 'assets/icons/warning.svg';
 import XIconPath from 'assets/icons/x.svg';
+import TreeArrowOpenIconPath from 'assets/icons/arrowOpen.svg';
+import TreeArrowCloseIconPath from 'assets/icons/arrowClose.svg';
+import FileTreeIconPath from 'assets/icons/fileTree.svg';
 
 /** A helper object mapping svg names to their paths */
 export const svgs = {
@@ -66,7 +69,8 @@ export const svgs = {
     maintenance: TabMaintenanceIconPath,
     packages: TabPackagesIconPath,
     rules: TabRulesIconPath,
-    example: InfoBubbleIconPath
+    example: InfoBubbleIconPath,
+    fileTree: FileTreeIconPath
   },
   devices: {
     generic: DeviceGenericIconPath,
@@ -119,5 +123,7 @@ export const svgs = {
   trash: TrashIconPath,
   upload: UploadIconPath,
   warning: WarningIconPath,
-  x: XIconPath
+  x: XIconPath,
+  TreeArrowClose: TreeArrowCloseIconPath,
+  TreeArrowOpen: TreeArrowOpenIconPath
 };

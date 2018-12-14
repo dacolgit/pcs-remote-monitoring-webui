@@ -1,5 +1,5 @@
 // Copyright (c) Microsoft. All rights reserved.
-const baseUrl = process.env.REACT_APP_BASE_SERVICE_URL || 'https://dacol-remotemonitoring.azurewebsites.net';
+const baseUrl = process.env.REACT_APP_BASE_SERVICE_URL || 'https://dacol-remoteMonitoring.azurewebsites.net';
 const validExtensions = ['.png', '.jpeg', '.jpg', '.svg'];
 
 const Config = {
