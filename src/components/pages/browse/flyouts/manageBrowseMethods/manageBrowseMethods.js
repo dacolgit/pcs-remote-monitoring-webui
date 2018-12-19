@@ -5,9 +5,9 @@ import { LinkedComponent, svgs, isDef, Validator } from 'utilities';
 import { TwinService } from 'services';
 import Config from 'app.config';
 
-import { 
+import {
   FormControl,
-  Btn, 
+  Btn,
   BtnToolbar,
   FormGroup,
   Indicator,
@@ -20,8 +20,8 @@ import {
 } from 'components/shared';
 
 import Flyout from 'components/shared/flyout';
-import './manageBrowse.css';
-import { 
+import './manageBrowse.scss';
+import {
   toWriteValueModel,
   toCallNodeMethodMetadataModel,
   toCallNodeMethodModel
@@ -72,7 +72,7 @@ export class ManageBrowseMethods extends LinkedComponent {
 
   apply = (event) => {
     event.preventDefault();
-  
+
     this.setState({ isPending: true });
 
     const { endpoint, data, t } = this.props;
@@ -89,11 +89,11 @@ export class ManageBrowseMethods extends LinkedComponent {
         );
       break;
       case WRITE:
-        if ((data.dataType.includes('Int') || data.dataType === 'Double') && !isNumeric(this.writeValueLink.value)) {  
+        if ((data.dataType.includes('Int') || data.dataType === 'Double') && !isNumeric(this.writeValueLink.value)) {
           this.setState({ isPending: false });
           this.setState({ error: {message: t('browseFlyout.validation.NaN')} });
           break;
-        }  
+        }
 
         this.subscription = TwinService.writeNodeValue(endpoint, JSON.stringify(toWriteValueModel(data, this.writeValueLink.value), null, 2))
         .subscribe(
@@ -104,7 +104,7 @@ export class ManageBrowseMethods extends LinkedComponent {
         );
       break;
       case CALL:
-        const { metadataCall } = this.state;  
+        const { metadataCall } = this.state;
 
         this.subscription = TwinService.callNodeMethod(endpoint, JSON.stringify(toCallNodeMethodModel(metadataCall, data.id, this.argumentLinks), null, 2))
         .subscribe(
@@ -126,7 +126,7 @@ export class ManageBrowseMethods extends LinkedComponent {
 
     actionType.length = 0;
     this.state = { isAccessible: true };
- 
+
     if (data.nodeClass === Config.nodeProperty.method)
     {
       actionType.push(CALL);
@@ -145,19 +145,19 @@ export class ManageBrowseMethods extends LinkedComponent {
   }
 
   selectionisValid() {
-    return this.actionLink.value !== ""; 
+    return this.actionLink.value !== "";
   }
 
   isWrite () {
-    return this.actionLink.value === WRITE; 
+    return this.actionLink.value === WRITE;
   }
 
   isRead () {
-    return this.actionLink.value === READ; 
+    return this.actionLink.value === READ;
   }
 
   isCall () {
-    return this.actionLink.value === CALL; 
+    return this.actionLink.value === CALL;
   }
 
   getCallMetadata () {
@@ -173,7 +173,7 @@ export class ManageBrowseMethods extends LinkedComponent {
             response.inputArguments.map((_, index) => [
               this.argumentLinks.push(this.linkTo('argumentvalue'+ index)
                 .check(Validator.notEmpty, () => this.props.t('browseFlyout.validation.required')))
-            ]);           
+            ]);
             this.setState({ isPending: true });
           },
           error => this.setState({ error })
@@ -195,7 +195,7 @@ export class ManageBrowseMethods extends LinkedComponent {
     }));
 
     this.getCallMetadata()
- 
+
     return (
       <Flyout.Container>
         <Flyout.Header>
@@ -208,7 +208,7 @@ export class ManageBrowseMethods extends LinkedComponent {
               <SectionHeader>{data.displayName}</SectionHeader>
               <SectionDesc>{data.description !== undefined ? data.description : t('browseFlyout.nodeName')}</SectionDesc>
               {
-                isAccessible ? 
+                isAccessible ?
                 <FormGroup>
                   <FormLabel>{t('browseFlyout.selectAction')}</FormLabel>
                   <FormControl
@@ -222,7 +222,7 @@ export class ManageBrowseMethods extends LinkedComponent {
                 </FormGroup>
                 : <SectionHeader>{t('browseFlyout.noAccess')}</SectionHeader>
               }
-              { 
+              {
                 this.isWrite() &&
                 <FormGroup>
                   <FormLabel>{t('browseFlyout.value')}</FormLabel>
@@ -234,7 +234,7 @@ export class ManageBrowseMethods extends LinkedComponent {
                !changesApplied && this.isCall() && inputArguments !== undefined &&
                 <SummarySection>
                 {inputArguments.length !== 0 && <SectionHeader>{'Set call arguments'}</SectionHeader>}
-                { 
+                {
                   inputArguments.map(({name, type}, index) => [
                     <FormGroup>
                       <FormLabel>{name}</FormLabel>
@@ -246,41 +246,41 @@ export class ManageBrowseMethods extends LinkedComponent {
                 </SummarySection>
               }
               {
-                changesApplied && 
+                changesApplied &&
                 <SummarySection>
                 {this.isRead() && <SectionHeader>{t('browseFlyout.value')}</SectionHeader>}
                   <SummaryBody>
-                    {this.isRead() && 
+                    {this.isRead() &&
                       <SectionDesc>
-                        { 
-                          isPending 
-                            ? <Indicator /> 
-                            : !isDef(error) 
-                              ? <Json>{ value }</Json> 
-                              : <div>{t('browseFlyout.errorMessage')} {error.message} </div> 
-                        } 
+                        {
+                          isPending
+                            ? <Indicator />
+                            : !isDef(error)
+                              ? <Json>{ value }</Json>
+                              : <div>{t('browseFlyout.errorMessage')} {error.message} </div>
+                        }
                       </SectionDesc>
                     }
                     {this.isWrite() &&
                       <SectionDesc>
-                        { 
-                          isPending 
-                            ? <Indicator /> 
-                            : !isDef(error) 
-                              ? <div>{t('browseFlyout.writeSuccesfully')}</div> 
-                              : <div>{t('browseFlyout.errorMessage')} {error.message} </div> 
-                        } 
+                        {
+                          isPending
+                            ? <Indicator />
+                            : !isDef(error)
+                              ? <div>{t('browseFlyout.writeSuccesfully')}</div>
+                              : <div>{t('browseFlyout.errorMessage')} {error.message} </div>
+                        }
                       </SectionDesc>
                     }
                     {this.isCall() &&
                       <SectionDesc>
-                        { 
-                          isPending 
-                            ? <Indicator /> 
-                            : !isDef(error) 
-                              ? <div>{t('browseFlyout.callSuccesfully')}</div> 
-                              : <div>{t('browseFlyout.errorMessage')} {error.message} </div> 
-                        } 
+                        {
+                          isPending
+                            ? <Indicator />
+                            : !isDef(error)
+                              ? <div>{t('browseFlyout.callSuccesfully')}</div>
+                              : <div>{t('browseFlyout.errorMessage')} {error.message} </div>
+                        }
                       </SectionDesc>
                     }
                   </SummaryBody>
@@ -289,11 +289,11 @@ export class ManageBrowseMethods extends LinkedComponent {
               {
                 !changesApplied &&
                 <BtnToolbar>
-                  {isAccessible && 
-                    <Btn 
-                      svg={svgs.reconfigure} 
-                      primary={true} 
-                      disabled={ !this.selectionisValid() || (!this.formIsValid() && this.isWrite())} 
+                  {isAccessible &&
+                    <Btn
+                      svg={svgs.reconfigure}
+                      primary={true}
+                      disabled={ !this.selectionisValid() || (!this.formIsValid() && this.isWrite())}
                       type="submit">
                       {t('browseFlyout.apply')}
                     </Btn>}
@@ -303,11 +303,11 @@ export class ManageBrowseMethods extends LinkedComponent {
               {
                 changesApplied &&
                 <BtnToolbar>
-                  {isAccessible && 
-                    <Btn 
-                      svg={svgs.reconfigure} 
-                      primary={true} 
-                      disabled={ !this.selectionisValid() } 
+                  {isAccessible &&
+                    <Btn
+                      svg={svgs.reconfigure}
+                      primary={true}
+                      disabled={ !this.selectionisValid() }
                       type="submit">
                       {t('browseFlyout.apply')}
                     </Btn>}
@@ -317,7 +317,7 @@ export class ManageBrowseMethods extends LinkedComponent {
           </FormSection>
           </form>
         </Flyout.Content>
-      </Flyout.Container> 
+      </Flyout.Container>
     );
   }
 }

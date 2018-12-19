@@ -5,15 +5,15 @@ import React, { Component } from 'react';
 import { Select } from 'components/shared';
 import { isFunc } from 'utilities';
 
-import './endpointDropdown.css';
+import './endpointDropdown.scss';
 
 const optionValues = [
   { value: 'all' },
-  { value: 'secure' } 
+  { value: 'secure' }
 ];
 
 export class EndpointDropdown extends Component {
-  
+
   onChange = (propOnChange) => ({ target: { value: { value } = {} } = {} }) => {
     if (isFunc(propOnChange)) propOnChange(value);
   }

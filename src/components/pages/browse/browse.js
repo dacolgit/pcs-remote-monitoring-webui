@@ -20,7 +20,7 @@ import { EndpointDropdown } from './endpointDropdown';
 import { ManageBrowseMethodsContainer } from './flyouts/manageBrowseMethods';
 import { RegistryService} from 'services';
 import { toScanSupervisorModel } from 'services/models';
-import './browse.css';
+import './browse.scss';
 import Config from 'app.config';
 
 const closedFlyoutState = { openFlyoutName: undefined };
